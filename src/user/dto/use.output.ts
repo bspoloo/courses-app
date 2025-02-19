@@ -1,4 +1,6 @@
 import { Field, ObjectType } from "@nestjs/graphql";
+import { CourseOutput } from "src/course/dto/course.output";
+import { Course } from "src/course/entity/course.entity";
 
 
 @ObjectType()
@@ -11,4 +13,8 @@ export class UserOutput {
     phone: string;
     @Field()
     address: string;
+
+    @Field(() => [CourseOutput], { nullable: true })
+    courses: CourseOutput[]
+    
 }

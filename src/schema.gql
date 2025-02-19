@@ -2,12 +2,64 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Course {
+  description: String!
+  id: Float!
+  name: String!
+  price: Float!
+  user: User
+}
+
+type CourseOutput {
+  description: String!
+  name: String!
+  price: Float!
+}
+
+input CreateCourseInput {
+  description: String!
+  name: String!
+  price: Float!
+}
+
+input CreateUserInput {
+  address: String!
+  courses: [CreateCourseInput!]
+  email: String!
+  name: String!
+  phone: String!
+}
+
+type Mutation {
+  createUser(user: CreateUserInput!): UserOutput!
+  deleteUser(id: Float!): UserOutput!
+  updateUser(id: Float!, user: UpdateUserInput!): UserOutput!
+}
+
 type Query {
+  getUserById(id: Float!): UserOutput!
   getUsers: [UserOutput!]!
+}
+
+input UpdateUserInput {
+  address: String!
+  email: String!
+  name: String!
+  phone: String!
+}
+
+type User {
+  address: String!
+  courses: [Course!]
+  email: String!
+  id: Float!
+  name: String!
+  phone: String!
 }
 
 type UserOutput {
   address: String!
+  courses: [CourseOutput!]
   email: String!
   name: String!
   phone: String!

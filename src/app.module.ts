@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeormConnectionConfig } from './config/typeorm.config';
 import { UserModule } from './user/user.module';
 import { UserResolver } from './user/user.resolver';
+import { CourseModule } from './course/course.module';
 
 const envModule = ConfigModule.forRoot({
   isGlobal: true,
@@ -20,6 +21,7 @@ const port: number = parseInt(<string>process.env.PORT) || 3306;
   imports: [
     envModule,
     UserModule,
+    CourseModule,
     TypeOrmModule.forRoot(typeormConnectionConfig),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

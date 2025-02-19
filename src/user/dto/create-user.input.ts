@@ -1,6 +1,7 @@
 
 import { Field, InputType, ObjectType } from "@nestjs/graphql";
 import { IsNotEmpty, IsString } from "class-validator";
+import { CreateCourseInput } from "src/course/dto/create-course.input";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @InputType()
 export class CreateUserInput {
@@ -23,4 +24,9 @@ export class CreateUserInput {
     @IsString()
     @IsNotEmpty()
     address: string;
+
+    @Field(() => [CreateCourseInput], {nullable: true})
+    @IsString()
+    @IsNotEmpty()
+    courses: CreateCourseInput[];
 }

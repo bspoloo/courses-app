@@ -1,5 +1,6 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Course } from "src/course/entity/course.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
@@ -23,4 +24,8 @@ export class User {
     @Field()
     @Column('text')
     address: string;
+
+    @Field(() => [Course], {nullable: true})
+    @OneToMany(() => Course, (course) => course.user)
+    courses : Course[];
 }
